@@ -3,59 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
+    <title>MCalculator</title>
+    <!--later na ang icon-->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- theme toggle button -->
+    <div class="theme-toggle">
+        <input type="checkbox" id="theme-checkbox" class="toggle-checkbox">
+        <label for="theme-checkbox" class="toggle-label">
+            <div class="toggle-slider"></div>
+        </label>
+    </div>
 
-<header>
-    <div class="toggle-wrapper">
-        <input class="toggle-checkbox" type="checkbox">
-        <div class="toggle-container">  
-            <div class="toggle-button">
-                <div class="toggle-button-circles-container">
-                    <div class="toggle-button-circle"></div>
-                    <div class="toggle-button-circle"></div>
-                    <div class="toggle-button-circle"></div>
-                    <div class="toggle-button-circle"></div>
-                    <div class="toggle-button-circle"></div>
-                    <div class="toggle-button-circle"></div>
-                    <div class="toggle-button-circle"></div>
-                    <div class="toggle-button-circle"></div>
-                    <div class="toggle-button-circle"></div>
-                    <div class="toggle-button-circle"></div>
-                    <div class="toggle-button-circle"></div>
-                    <div class="toggle-button-circle"></div>
-                </div>
-            </div>
+    <!-- history panel -->
+    <div class="history-panel" id="history-panel">
+        <div class="history-header">
+            <h3>History</h3>
+            <button class="history-clear" id="clear-history">Clear</button>
+        </div>
+        <div class="history-list" id="history-list">
+            <p class="history-empty">No calculations yet</p>
         </div>
     </div>
-</header>
 
-<div class="calculator">
-    <input type="text" id="display" readonly>
-    <div class="buttons">
-        <button class="clear" onclick="clearDisplay()">C</button>
-        <button class="operator" onclick="appendToDisplay('/')">/</button>
-        <button class="operator" onclick="appendToDisplay('*')">×</button>
-        <button onclick="appendToDisplay('7')">7</button>
-        <button onclick="appendToDisplay('8')">8</button>
-        <button onclick="appendToDisplay('9')">9</button>
-        <button class="operator" onclick="appendToDisplay('-')">-</button>
-        <button onclick="appendToDisplay('4')">4</button>
-        <button onclick="appendToDisplay('5')">5</button>
-        <button onclick="appendToDisplay('6')">6</button>
-        <button class="operator" onclick="appendToDisplay('+')">+</button>
-        <button onclick="appendToDisplay('1')">1</button>
-        <button onclick="appendToDisplay('2')">2</button>
-        <button onclick="appendToDisplay('3')">3</button>
-        <button onclick="appendToDisplay('0')">0</button>
-        <button onclick="appendToDisplay('.')">.</button>
-        <button class="equals" onclick="calculate()">=</button>
+    <!-- history toggle button -->
+    <button class="history-toggle" id="history-toggle" title="Toggle History">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+    </button>
+
+    <!-- calculator container -->
+    <div class="calculator">
+        <!-- display -->
+        <div class="display" id="display">0</div>
+
+        <!-- buttons -->
+        <div class="buttons">
+            <!-- row1-->
+            <button class="btn function" data-action="clear">C</button>
+            <button class="btn function" data-action="parentheses">()</button>
+            <button class="btn function" data-action="percentage">%</button>
+            <button class="btn operator" data-action="divide">÷</button>
+
+            <!-- row2 -->
+            <button class="btn number" data-value="7">7</button>
+            <button class="btn number" data-value="8">8</button>
+            <button class="btn number" data-value="9">9</button>
+            <button class="btn operator" data-action="multiply">×</button>
+
+            <!-- row3 -->
+            <button class="btn number" data-value="4">4</button>
+            <button class="btn number" data-value="5">5</button>
+            <button class="btn number" data-value="6">6</button>
+            <button class="btn operator" data-action="subtract">−</button>
+
+            <!-- row4 -->
+            <button class="btn number" data-value="1">1</button>
+            <button class="btn number" data-value="2">2</button>
+            <button class="btn number" data-value="3">3</button>
+            <button class="btn operator" data-action="add">+</button>
+
+            <!-- row5 -->
+            <button class="btn function" data-action="sign">+/−</button>
+            <button class="btn number" data-value="0">0</button>
+            <button class="btn function" data-action="decimal">.</button>
+            <button class="btn equals" data-action="equals">=</button>
+        </div>
     </div>
-</div>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
