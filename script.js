@@ -663,7 +663,7 @@ function clearHistory() {
     });
 }
 
-// Custom Modal Function
+// custom modal function
 function showModal(options) {
     const {
         title = 'Confirm',
@@ -681,50 +681,44 @@ function showModal(options) {
     modalConfirmBtn.textContent = confirmText;
     modalCancelBtn.textContent = cancelText;
 
-    // Set icon style
+    
     modalIcon.className = 'modal-icon';
     if (danger) {
         modalIcon.classList.add('alert');
     }
 
-    // Set confirm button style
+    
     modalConfirmBtn.className = 'modal-btn modal-btn-confirm';
     if (danger) {
         modalConfirmBtn.classList.add('danger');
     }
 
-    // Handle alert vs confirm
     if (type === 'alert') {
         modalButtons.classList.add('alert-only');
     } else {
         modalButtons.classList.remove('alert-only');
     }
 
-    // Show modal
     modalOverlay.classList.add('active');
 
-    // Handle confirm
     const handleConfirm = () => {
         modalOverlay.classList.remove('active');
         onConfirm();
         cleanup();
     };
 
-    // Handle cancel
     const handleCancel = () => {
         modalOverlay.classList.remove('active');
         onCancel();
         cleanup();
     };
 
-    // Handle overlay click
     const handleOverlayClick = (e) => {
         if (e.target === modalOverlay) {
             handleCancel();
         }
     };
 
-    // Cleanup event listeners
     const cleanup = () => {
         modalConfirmBtn.removeEventListener('click', handleConfirm);
         modalCancelBtn.removeEventListener('click', handleCancel);
