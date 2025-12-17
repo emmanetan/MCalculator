@@ -1,0 +1,193 @@
+:root {
+    --bg-gradient: #F8F9FA;
+    --calc-bg: #FFFFFF;
+    --calc-shadow: rgba(0, 0, 0, 0.1);
+    --calc-border: #DEE2E6;
+    --display-bg: #F8F9FA;
+    --display-color: #212529;
+    --btn-bg: #F8F9FA;
+    --btn-border: #DEE2E6;
+    --btn-color: #212529;
+    --btn-hover-bg: #E9ECEF;
+}
+
+body.dark-mode {
+    --bg-gradient: #121212;
+    --calc-bg: #1E1E1E;
+    --calc-shadow: rgba(0, 0, 0, 0.5);
+    --calc-border: #343A40;
+    --display-bg: #121212;
+    --display-color: #E9ECEF;
+    --btn-bg: #2C2C2C;
+    --btn-border: #343A40;
+    --btn-color: #E9ECEF;
+    --btn-hover-bg: #343A40;
+}
+
+header {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: var(--bg-gradient);
+    margin: 0;
+    transition: background 0.5s ease;
+}
+.calculator {
+    background: var(--calc-bg);
+    box-shadow: 0 8px 32px 0 var(--calc-shadow);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 20px;
+    border: 1px solid var(--calc-border);
+    padding: 20px;
+    width: 300px;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+#display {
+    width: 100%;
+    height: 60px;
+    font-size: 32px;
+    text-align: right;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 10px;
+    background: var(--display-bg);
+    color: var(--display-color);
+    outline: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+button {
+    padding: 15px;
+    font-size: 20px;
+    border: 1px solid var(--btn-border);
+    border-radius: 12px;
+    cursor: pointer;
+    background: var(--btn-bg);
+    color: var(--btn-color);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+button:hover {
+    background: var(--btn-hover-bg);
+    transform: translateY(-2px);
+}
+button:active {
+    transform: translateY(0);
+}
+button.operator {
+    background: rgba(255, 159, 67, 0.6);
+    border-color: rgba(255, 159, 67, 0.8);
+}
+button.operator:hover {
+    background: rgba(255, 159, 67, 0.8);
+}
+button.equals {
+    background: rgba(46, 204, 113, 0.6);
+    border-color: rgba(46, 204, 113, 0.8);
+    grid-column: span 2;
+}
+button.equals:hover {
+    background: rgba(46, 204, 113, 0.8);
+}
+button.clear {
+    background: rgba(231, 76, 60, 0.6);
+    border-color: rgba(231, 76, 60, 0.8);
+    grid-column: span 2;
+}
+button.clear:hover {
+    background: rgba(231, 76, 60, 0.8);
+}
+
+
+
+/* From Uiverse.io by njesenberger */ 
+.toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: .5em;
+  padding: .125em;
+  background-image: linear-gradient(to bottom, #d5d5d5, #e8e8e8);
+  box-shadow: 0 1px 1px rgb(255 255 255 / .6);
+  /* resize for demo */
+  font-size: 1.5em;
+}
+
+.toggle-checkbox {
+  appearance: none;
+  position: absolute;
+  z-index: 1;
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  /* fix em sizing */
+  font: inherit;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: .375em;
+  width: 3em;
+  height: 1.5em;
+  background-color: #e8e8e8;
+  box-shadow: inset 0 0 .0625em .125em rgb(255 255 255 / .2), inset 0 .0625em .125em rgb(0 0 0 / .4);
+  transition: background-color .4s linear;
+}
+
+.toggle-checkbox:checked + .toggle-container {
+  background-color: #585656;
+}
+
+.toggle-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: .0625em;
+  border-radius: .3125em;
+  width: 1.375em;
+  height: 1.375em;
+  background-color: #e8e8e8;
+  box-shadow: inset 0 -.0625em .0625em .125em rgb(0 0 0 / .1), inset 0 -.125em .0625em rgb(0 0 0 / .2), inset 0 .1875em .0625em rgb(255 255 255 / .3), 0 .125em .125em rgb(0 0 0 / .5);
+  transition: left .4s;
+}
+
+.toggle-checkbox:checked + .toggle-container > .toggle-button {
+  left: 1.5625em;
+}
+
+.toggle-button-circles-container {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  gap: .125em;
+  position: absolute;
+  margin: 0 auto;
+}
+
+.toggle-button-circle {
+  border-radius: 50%;
+  width: .125em;
+  height: .125em;
+  background-image: radial-gradient(circle at 50% 0, #f5f5f5, #c4c4c4);
+}
