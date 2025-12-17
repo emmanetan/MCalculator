@@ -1,4 +1,4 @@
-// DOM ELEMENTS
+// DOM elem
 const display = document.getElementById('display');
 const buttons = document.querySelectorAll('.btn');
 const themeToggle = document.getElementById('theme-checkbox');
@@ -6,6 +6,15 @@ const historyPanel = document.getElementById('history-panel');
 const historyToggleBtn = document.getElementById('history-toggle');
 const historyList = document.getElementById('history-list');
 const clearHistoryBtn = document.getElementById('clear-history');
+
+// modal elem
+const modalOverlay = document.getElementById('modal-overlay');
+const modalIcon = document.getElementById('modal-icon');
+const modalTitle = document.getElementById('modal-title');
+const modalMessage = document.getElementById('modal-message');
+const modalConfirmBtn = document.getElementById('modal-confirm');
+const modalCancelBtn = document.getElementById('modal-cancel');
+const modalButtons = document.querySelector('.modal-buttons');
 
 
 const OPERATOR_SYMBOLS = {
@@ -611,11 +620,91 @@ function deleteHistoryItem(index) {
 function clearHistory() {
     if (!calculationHistory.length) return;
 
-    if (confirm('Clear all calculation history?')) {
-        calculationHistory = [];
-        saveHistory();
-        renderHistory();
+    showModal({
+        title: 'Clear History',
+        message: 'Are you sure you want to clear all calculation history?',
+        type: 'confirm',
+        confirmText: 'Clear All',
+        danger: true,
+        onConfirm: () => {
+            calculationHistory = [];
+            saveHistory();
+            renderHistory();
+        }
+    });
+}
+
+// Custom Modal Function
+function showModal(options) {
+    const {
+        title = 'Confirm',
+        message = 'Are you sure?',
+        type = 'confirm', // 'confirm', 'alert'
+        confirmText = 'Confirm',
+        cancelText = 'Cancel',
+        danger = false,
+        onConfirm = () => {},
+        onCancel = () => {}
+    } = options;
+
+    modalTitle.textContent = title;
+    modalMessage.textContent = message;
+    modalConfirmBtn.textContent = confirmText;
+    modalCancelBtn.textContent = cancelText;
+
+    // Set icon style
+    modalIcon.className = 'modal-icon';
+    if (danger) {
+        modalIcon.classList.add('alert');
     }
+
+    // Set confirm button style
+    modalConfirmBtn.className = 'modal-btn modal-btn-confirm';
+    if (danger) {
+        modalConfirmBtn.classList.add('danger');
+    }
+
+    // Handle alert vs confirm
+    if (type === 'alert') {
+        modalButtons.classList.add('alert-only');
+    } else {
+        modalButtons.classList.remove('alert-only');
+    }
+
+    // Show modal
+    modalOverlay.classList.add('active');
+
+    // Handle confirm
+    const handleConfirm = () => {
+        modalOverlay.classList.remove('active');
+        onConfirm();
+        cleanup();
+    };
+
+    // Handle cancel
+    const handleCancel = () => {
+        modalOverlay.classList.remove('active');
+        onCancel();
+        cleanup();
+    };
+
+    // Handle overlay click
+    const handleOverlayClick = (e) => {
+        if (e.target === modalOverlay) {
+            handleCancel();
+        }
+    };
+
+    // Cleanup event listeners
+    const cleanup = () => {
+        modalConfirmBtn.removeEventListener('click', handleConfirm);
+        modalCancelBtn.removeEventListener('click', handleCancel);
+        modalOverlay.removeEventListener('click', handleOverlayClick);
+    };
+
+    modalConfirmBtn.addEventListener('click', handleConfirm);
+    modalCancelBtn.addEventListener('click', handleCancel);
+    modalOverlay.addEventListener('click', handleOverlayClick);
 }
 
 init();

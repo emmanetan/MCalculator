@@ -456,3 +456,132 @@ body {
         height: 20px;
     }
 }
+
+/* Custom Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: var(--calc-bg);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 350px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px var(--shadow-dark);
+    transform: scale(0.8) translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal {
+    transform: scale(1) translateY(0);
+}
+
+.modal-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px;
+    background: var(--btn-operator-bg);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.modal-icon.alert {
+    background: #e74c3c;
+}
+
+.modal-icon.success {
+    background: var(--btn-equals-bg);
+}
+
+.modal-title {
+    color: var(--display-color);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.modal-message {
+    color: var(--display-color);
+    opacity: 0.7;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-btn-cancel {
+    background: var(--btn-function-bg);
+    color: var(--btn-function-color);
+}
+
+.modal-btn-cancel:hover {
+    filter: brightness(0.9);
+    
+}
+
+.modal-btn-confirm {
+    background: var(--btn-operator-bg);
+    color: white;
+}
+
+.modal-btn-confirm:hover {
+    filter: brightness(1.1);
+    
+}
+
+.modal-btn-confirm.danger {
+    background: #e74c3c;
+}
+
+.modal-btn:active {
+    transform: translateY(0);
+}
+
+/* Alert modal - single button */
+.modal-buttons.alert-only .modal-btn-cancel {
+    display: none;
+}
+
+.modal-buttons.alert-only .modal-btn-confirm {
+    flex: none;
+    min-width: 120px;
+}
