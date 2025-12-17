@@ -1,5 +1,7 @@
 // DOM elem
-const display = document.getElementById('display');
+const displayExpr = document.getElementById('display-expr');
+const displayResult = document.getElementById('display-result');
+const displayContainer = document.querySelector('.display-container');
 const buttons = document.querySelectorAll('.btn');
 const themeToggle = document.getElementById('theme-checkbox');
 const historyPanel = document.getElementById('history-panel');
@@ -347,7 +349,8 @@ function formatResult(value) {
 }
 
 function showError() {
-    display.textContent = 'Error';
+    displayExpr.textContent = 'Error';
+    displayResult.textContent = '';
     tokens = [{ type: 'number', value: '0' }];
     parenthesesBalance = 0;
     resultDisplayed = true;
@@ -393,7 +396,33 @@ function formatNumberForDisplay(value = '') {
 }
 
 function updateDisplay() {
-    display.textContent = tokensToDisplayString();
+    const expression = tokensToDisplayString();
+    displayExpr.textContent = expression;
+
+    if (resultDisplayed) {
+        // When = is pressed (Picture 2)
+        displayExpr.classList.add('final-result');
+        displayContainer.classList.add('result-mode');
+        displayResult.textContent = ''; 
+    } else {
+        // While typing (Picture 1)
+        displayExpr.classList.remove('final-result');
+        displayContainer.classList.remove('result-mode');
+        
+        // Try to show a live preview if there's an operator present
+        if (tokens.some(t => t.type === 'operator' || t.type === 'parenthesis')) {
+            try {
+                const prepared = prepareTokensForEvaluation();
+                const exprString = tokensToExpressionString(prepared);
+                const rawResult = evaluateExpressionString(exprString);
+                displayResult.textContent = formatNumberForDisplay(formatResult(rawResult));
+            } catch (e) {
+                displayResult.textContent = '';
+            }
+        } else {
+            displayResult.textContent = '';
+        }
+    }
 }
 
 function tokensToDisplayString(list = tokens) {
