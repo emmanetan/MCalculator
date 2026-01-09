@@ -135,20 +135,3 @@ Contributions are welcome! If you'd like to improve MCalculator:
 ## License
 
 © 2025 emmanetan. All rights reserved.
-
-## Contact
-
-- **GitHub**: [@emmanetan](https://github.com/emmanetan)
-- **Facebook**: [emmannnnn283](https://web.facebook.com/emmannnnn283)
-- **Instagram**: [@etan.emman](https://www.instagram.com/etan.emman/)
-- **LinkedIn**: [emmanetan](https://linkedin.com/in/emmanetan)
-
-## Acknowledgments
-
-- Inspired by modern calculator designs
-- Icons are inline SVG for optimal performance
-- Uses system fonts for best native appearance
-
----
-
-**Enjoy calculating!** 🧮

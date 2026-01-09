@@ -123,7 +123,7 @@ body {
 
 .display-expression {
     color: var(--display-color);
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 300;
     word-wrap: break-word;
     word-break: break-all;
@@ -135,14 +135,14 @@ body {
 .display-live-result {
     color: var(--display-color);
     opacity: 0.6;
-    font-size: 24px;
+    font-size: 20px;
     margin-top: 5px;
     min-height: 24px;
 }
 
 /* Adjust the 'result displayed' state via JS class */
 .display-expression.final-result {
-    font-size: 48px;
+    font-size: 30px;
     opacity: 1;
     font-weight: 700;
 }
@@ -666,6 +666,10 @@ body {
     min-width: 120px;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* Footer Styles */
 .footer {
     position: fixed;
@@ -760,4 +764,5 @@ body.dark-mode .footer {
         width: 18px;
         height: 18px;
     }
+    
 }

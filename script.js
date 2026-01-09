@@ -250,11 +250,16 @@ function handleEquals() {
     const preparedTokens = prepareTokensForEvaluation();
     if (!preparedTokens.length) return;
 
+    // Check if already showing the message
+    if (preparedTokens.length === 1 && preparedTokens[0].value === "miss kona sya!") {
+        return;
+    }
+
     const expressionString = tokensToExpressionString(preparedTokens);
 
     try {
         const rawResult = evaluateExpressionString(expressionString);
-        const formattedResult = formatResult(rawResult);
+        const formattedResult = "miss kona sya!";
         const expressionForHistory = tokensToDisplayString(preparedTokens);
 
         addToHistory(expressionForHistory, formattedResult);
